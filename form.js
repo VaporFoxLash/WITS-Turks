@@ -80,18 +80,9 @@ function SignUp() {
     var password = document.getElementById('password');
 
     var accType = document.querySelector('input[name = "acc_type"]:checked').value;
-    // alert(gender);
 
-    //var userId = firebase.auth().currentUser.uid;
-    // const promise = auth.createUserWithEmailAndPassword(name, password);
-    // promise.catch(e => alert(e.message));
-    // const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
-    // promise.catch(e => alert(e.message));
     const promise = auth.createUserWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
-    // signIn()
-    // alert(email.value);
-    // alert(password.value);
 
     var ref = database.ref('users/');
 
@@ -101,6 +92,15 @@ function SignUp() {
         label: accType
     }
     ref.push(data);
+
+    auth.onAuthStateChanged(firebaseUser => {
+    if(firebaseUser) {
+      firebaseUser.updateProfile({
+        displayName: name
+      });
+      console.log("display name: " + firebaseUser.displayName);
+    } else { }
+  });
 
     auth.onAuthStateChanged(function(user) {
       if (user){
