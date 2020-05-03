@@ -15,6 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
     <script src="form.js"></script>
+    <script src="view.js"></script>
 </head>
 <body>
     <header>
@@ -28,14 +29,17 @@
             </ul>
         </div>
             <div class="title">
-                <h1>WELCOME PROJECT OWNER</h1>
+                <h1 style="color:#2B1B17">WELCOME PROJECT OWNER</h1>
         </div>
+        </header>
         <div class="button">
             <a href="#" class="btn">CREATE NEW PROJECT</a>
             <a href="#" class="btn">VIEW PROJECTS</a>
         </div>
         <button type="submit" onclick="signOut()">Log off</button>
         <button type="submit" onclick="location.href='OwnerUpload.html';">Create new project</button>
-    </header>
+        <br>
+        <img id="myImgId" src="" height="625" width="450"/>
+
 </body>
 </html>
