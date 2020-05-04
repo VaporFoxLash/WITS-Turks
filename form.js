@@ -64,51 +64,84 @@ function UpdateInfo() {
     // var userId = firebase.auth().currentUser.uid;
     var ref = database.ref('users/');
 
-    var data = {
-        name: username,
-        email: user_email,
-        label: label
-    }
-    ref.push(data);
-    window.open('Login.html')
+    // var data = {
+    //     name: username,
+    //     email: user_email,
+    //     label: label
+    // }
+    // ref.push(data);
+    // window.open('Login.html')
 }
+  //
+  // auth.onAuthStateChanged(function(user) {
+  //   if (!user){
+  //     window.location.href = 'signin.html'
+  //   }
+  // });
 
 function SignUp() {
-    var username = document.getElementById('name');
-    var email = document.getElementById('email');
-    // var email = document.getElementById('email');
-    var password = document.getElementById('password');
+    var email = document.getElementById("semail");
+    var password = document.getElementById("spassword");
+    // alert(email.value +"...logging in");
 
-    var accType = document.querySelector('input[name = "acc_type"]:checked').value;
+    document.write(email);
+    const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+    promise.catch(e => alert(e.message));
 
-    const promise = auth.createUserWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
 
-    var ref = database.ref('users/');
 
-    var data = {
-        name: username,
-        email: email,
-        label: accType
-    }
-    ref.push(data);
+    firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+   // user signed in
+    }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
 
-    auth.onAuthStateChanged(firebaseUser => {
-    if(firebaseUser) {
-      firebaseUser.updateProfile({
-        displayName: name
-      });
-      console.log("display name: " + firebaseUser.displayName);
-    } else { }
-  });
-
-    auth.onAuthStateChanged(function(user) {
-      if (user){
-        window.location.href = 'OwnerHomePage.html'
-      }
+        if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+        } else {
+            alert(errorMessage);
+        }
+        console.log(error);
     });
-    var form = document.getElementById("type");
-    alert(form.elements["type"].value);
+    // var form = document.getElementById("type");
+    // alert(form.elements["type"].value);
+  //   var username = document.getElementById('name').value;
+  //   var email = document.getElementById('email').value;
+  //   alert(name);
+  //   // var email = document.getElementById('email');
+  //   var password = document.getElementById('password').value;
+  //   alert(email + " " + password);
+  //
+  //   var accType = document.querySelector('input[name = "acc_type"]:checked').value;
+  //
+  //   const promise = auth.createUserWithEmailAndPassword(email, password);
+  //   promise.catch(e => console.log(e.message));
+  //
+  //   var ref = database.ref('users/');
+  //
+  //   var data = {
+  //       name: username,
+  //       email: email,
+  //       label: accType
+  //   }
+  //   ref.push(data);
+  //
+  // //   auth.onAuthStateChanged(firebaseUser => {
+  // //   if(firebaseUser) {
+  // //     firebaseUser.updateProfile({
+  // //       displayName: name
+  // //     });
+  // //     console.log("display name: " + firebaseUser.displayName);
+  // //   } else { }
+  // // });
+  //
+  //   auth.onAuthStateChanged(function(user) {
+  //     if (user){
+  //       window.location.href = 'OwnerHomePage.html'
+  //     }
+  //   });
+  //   var form = document.getElementById("type");
+  //   alert(form.elements["type"].value);
 }
 
 // var value = document.getElementById('lform').children[0].value;
@@ -119,13 +152,14 @@ function signIn() {
     var email = document.getElementById("email");
 
     var password = document.getElementById("password");
+    alert(email.value);
 
     document.write(email);
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
     auth.onAuthStateChanged(function(user) {
       if (user){
-        window.location.href = 'OwnerHomePage.html'
+        window.location.href = 'projectownerindex.html'
       }
     });
 
@@ -202,21 +236,21 @@ function openInNewTab(url) {
     var win = window.open(url, '_blank');
     win.focus();
 }
-
-$(document).ready(function() {
-  //Initialize the Firebase App
-  Auth.init(function() {
-
-    var user = Auth.checkLoggedInUser();
-    console.log(user)
-    if( user ){
-
-    } else {
-
-    }
-    appRouter.listen();
-  });
-})
+//
+// $(document).ready(function() {
+//   //Initialize the Firebase App
+//   Auth.init(function() {
+//
+//     var user = Auth.checkLoggedInUser();
+//     console.log(user)
+//     if( user ){
+//
+//     } else {
+//
+//     }
+//     appRouter.listen();
+//   });
+// })
 
 // auth.onAuthStateChanged(function(user) {
 //
