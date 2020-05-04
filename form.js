@@ -86,7 +86,12 @@ function SignUp() {
     document.write(email);
     const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
-   // 
+    auth.onAuthStateChanged(function(user) {
+      if (user){
+        window.location.href = 'projectownerindex.html'
+      }
+    });
+   //
    //
    //
    //  firebase.auth().signInWithEmailAndPassword(email.value, password.value).then(function(user) {
