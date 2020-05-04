@@ -1,5 +1,4 @@
 // web app's Firebase configuration
-
 const firebaseConfig = {
   apiKey: "AIzaSyDmvEacD4-rg4ROS4yv9M9W9haigGqrWXI",
   authDomain: "witsturks-84dd0.firebaseapp.com",
@@ -87,22 +86,22 @@ function SignUp() {
     document.write(email);
     const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
-
-
-
-    firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
-   // user signed in
-    }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
-        } else {
-            alert(errorMessage);
-        }
-        console.log(error);
-    });
+   // 
+   //
+   //
+   //  firebase.auth().signInWithEmailAndPassword(email.value, password.value).then(function(user) {
+   // // user signed in
+   //  }).catch(function(error) {
+   //      var errorCode = error.code;
+   //      var errorMessage = error.message;
+   //
+   //      if (errorCode === 'auth/wrong-password') {
+   //          alert('Wrong password.');
+   //      } else {
+   //          alert(errorMessage);
+   //      }
+   //      console.log(error);
+   //  });
     // var form = document.getElementById("type");
     // alert(form.elements["type"].value);
   //   var username = document.getElementById('name').value;
