@@ -1,12 +1,12 @@
 // web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDmvEacD4-rg4ROS4yv9M9W9haigGqrWXI",
-  authDomain: "witsturks-84dd0.firebaseapp.com",
-  databaseURL: "https://witsturks-84dd0.firebaseio.com",
-  projectId: "witsturks-84dd0",
-  storageBucket: "witsturks-84dd0.appspot.com",
-  messagingSenderId: "715634280158",
-  appId: "1:715634280158:web:751406c3fa3e7fedd4644f"
+    apiKey: "AIzaSyDmvEacD4-rg4ROS4yv9M9W9haigGqrWXI",
+    authDomain: "witsturks-84dd0.firebaseapp.com",
+    databaseURL: "https://witsturks-84dd0.firebaseio.com",
+    projectId: "witsturks-84dd0",
+    storageBucket: "witsturks-84dd0.appspot.com",
+    messagingSenderId: "715634280158",
+    appId: "1:715634280158:web:751406c3fa3e7fedd4644f"
 };
 
 // Initialize Firebase
@@ -25,6 +25,7 @@ var storageRef = storage.ref();
 var imagesRef = storageRef.child('images');
 
 function uploadImage() {
+
       const ref = firebase.storage().ref();
       const file = document.querySelector("#photo").files[0];
       const name = +new Date() + "-" + file.name;
@@ -37,8 +38,11 @@ function uploadImage() {
         .then(url => {
           console.log(url);
           document.querySelector("#image").src = url;
+          Img_url = url;
         })
         .catch(console.error);
+
+
     }
 
 function writeUserData(userId, name, email, type) {
@@ -60,7 +64,7 @@ function UpdateInfo() {
     // var name = document.getElementById("name").value;
     // var email = document.getElementById("email").value;
     //var type = document.getElementById("type");
-    // var userId = firebase.auth().currentUser.uid;
+    var userId = firebase.auth().currentUser.uid;
     var ref = database.ref('users/');
 
     // var data = {
@@ -156,7 +160,6 @@ function signIn() {
     var email = document.getElementById("email");
 
     var password = document.getElementById("password");
-    alert(email.value);
 
     document.write(email);
     const promise = auth.signInWithEmailAndPassword(email.value, password.value);
