@@ -55,8 +55,9 @@ function nextImg(){
         // Or inserted into an <img> element:
         var img = document.getElementById('myImgId');
         img.src = url;
-        firebase.database().ref('completedProjects/' + userID).set({
-            label: str_label
+        firebase.database().ref('completedProjects/' + userID + "/"+count).set({
+            label: str_label,
+            link: url
         });
       }).catch(function(error) {
         // Handle any errors
