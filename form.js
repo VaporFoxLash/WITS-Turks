@@ -24,23 +24,25 @@ var storageRef = storage.ref();
 // Create a child reference
 var imagesRef = storageRef.child('images');
 
-function uploadImage() {
-      const ref = firebase.storage().ref();
-      const file = document.querySelector("#photo").files[0];
-      const name = +new Date() + "-" + file.name;
-      const metadata = {
-        contentType: file.type
-      };
-      const task = ref.child(name).put(file, metadata);
-      task
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => {
-          console.log(url);
-          document.querySelector("#image").src = url;
-          Img_url = url;
-        })
-        .catch(console.error);
-    }
+// function uploadImage()
+// {
+//       const ref = firebase.storage().ref();
+//       const file = document.querySelector("#photo").files[0];
+//       const name = +new Date() + "-" + file.name;
+//       const metadata = {
+//         contentType: file.type
+//       };
+//       const task = ref.child(name).put(file, metadata);
+//       task
+//         .then(snapshot => snapshot.ref.getDownloadURL())
+//         .then(url => {
+//           console.log(url);
+//           document.querySelector("#image").src = url;
+//           Img_url = url;
+//         })
+//         .catch(console.error);
+//         alert("File uploaded, select another image to upload or go back to the projects");
+// }
 
 function writeUserData(userId, email, type) {
     firebase.database().ref('users/' + userId).set({

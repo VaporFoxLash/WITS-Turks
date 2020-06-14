@@ -17,9 +17,9 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(user);
         var user = firebase.auth().currentUser.uid;
         userID = user;
-        // alert(user);    //you should have your user here!
+        alert(user);    //you should have your user here!
     } else {
-        console.log('No user is signed in.');
+        alert('No user is signed in.');
     }
 });
 
