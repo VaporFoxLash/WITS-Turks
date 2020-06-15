@@ -1,12 +1,12 @@
 // web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDmvEacD4-rg4ROS4yv9M9W9haigGqrWXI",
-    authDomain: "witsturks-84dd0.firebaseapp.com",
-    databaseURL: "https://witsturks-84dd0.firebaseio.com",
-    projectId: "witsturks-84dd0",
-    storageBucket: "witsturks-84dd0.appspot.com",
-    messagingSenderId: "715634280158",
-    appId: "1:715634280158:web:751406c3fa3e7fedd4644f"
+  apiKey: "AIzaSyDmvEacD4-rg4ROS4yv9M9W9haigGqrWXI",
+  authDomain: "witsturks-84dd0.firebaseapp.com",
+  databaseURL: "https://witsturks-84dd0.firebaseio.com",
+  projectId: "witsturks-84dd0",
+  storageBucket: "witsturks-84dd0.appspot.com",
+  messagingSenderId: "715634280158",
+  appId: "1:715634280158:web:751406c3fa3e7fedd4644f"
 };
 
 // Initialize Firebase
@@ -103,42 +103,36 @@ function SignUp() {
 
 
 function signIn() {
+  var email = document.getElementById("email");
 
-    var email = document.getElementById("email");
+  var password = document.getElementById("password");
+  alert(email.value);
 
-    var password = document.getElementById("password");
+  document.write(email);
+  const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+  promise.catch(e => alert(e.message));
+  // alert(email);
+  //
+  // alert(password);
+  auth.onAuthStateChanged(function(user) {
+    if (user){
+      window.location.href = 'projectownerindex.html'
+    }
+  });
 
-    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
-    promise.catch(e => alert(e.message));
-    auth.onAuthStateChanged(function(user) {
-      if (user){
-        var user = firebase.auth().currentUser.uid;
-        var myRef = firebase.database().ref().child("users/"+user);
-        myRef.on("child_added", snap => {
-            var key=snap.key;
-            // alert(myList.length);
-            var label = snap.child("label").val();
-            if (label=="owner"){
-              window.location.href = 'projectownerindex.html'
-            }
-        });
+  firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+ // user signed in
+  }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
 
+      if (errorCode === 'auth/wrong-password') {
+          alert('Wrong password.');
+      } else {
+          alert(errorMessage);
       }
-    });
-
-    firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
-   // user signed in
-    }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
-        } else {
-            alert(errorMessage);
-        }
-        console.log(error);
-    });
+      console.log(error);
+  });
 
 }
 
