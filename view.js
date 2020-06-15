@@ -9,7 +9,7 @@ var myList = new Array();
 var count = 0;
 // var userId = firebase.auth().currentUser.uid;
 var userID = ""
-var fbRef = firebase.database().ref().child("users");
+var fbRef = firebase.database().ref().child("users"); //reference
 var imageRef = firebase.database().ref().child("Images");
 
 firebase.auth().onAuthStateChanged(function(user) {
@@ -23,6 +23,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+// _----> ("completedProjects/"+userID)
+// retrieves data from images table
 imageRef.on("child_added", snap => {
     var key=snap.key;
     // alert(myList.length);
